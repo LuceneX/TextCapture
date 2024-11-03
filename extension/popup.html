@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Capture & Summarize</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .summary-container {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <button id="captureScreen">Capture Screen</button>
+  <button id="capturePage">Capture Page</button>
+  
+  <div class="summary-container">
+    <h3>English Summary</h3>
+    <div id="summaryEn"></div>
+  </div>
+  
+  <div class="summary-container">
+    <h3>Latvian Summary</h3>
+    <div id="summaryLv"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

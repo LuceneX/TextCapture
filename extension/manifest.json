@@ -1,18 +1,19 @@
 {
-    "manifest_version": 3,
-    "name": "Text Capture & Summarize",
-    "version": "1.0",
-    "permissions": [
+  "manifest_version": 3,
+  "name": "Text Capture & Summarize",
+  "version": "1.0",
+  "permissions": [
       "activeTab",
       "scripting"
-    ],
-    "action": {
+  ],
+  "host_permissions": [
+      "http://localhost:5000/*"
+  ],
+  "action": {
       "default_popup": "popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ]
-  }
+  },
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+  }]
+}

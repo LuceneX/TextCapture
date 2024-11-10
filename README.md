@@ -1,4 +1,4 @@
-# Text Summarization App Documentation
+# TextCapture App Documentation
 
 ## Overview
 The Text Summarization App is a Python-based tool designed to capture and summarize text, supporting both Latvian and English. This app leverages text processing, OCR, and translation capabilities to provide users with concise summaries of their input, either in the original or translated language. It features a Flask API for easy interaction, making it accessible for integration into larger systems.
@@ -16,24 +16,14 @@ Tesseract OCR: Installed on your system and accessible. Refer to Tesseract insta
 ##Installation
 Clone the Repository: Start by downloading the source code from the repository.
 ```bash
-Copy code
-git clone <repository-url>
+git clone <https://github.com/LuceneX/TextCapture.git>
 cd <repository-directory>
-Install Dependencies: Run the following to install the required libraries.
-``` 
+```
+Install Dependencies: Run the following to run virtual enviroment with preinstalled required libraries.
 Copy code:
 ```bash
-pip install -r requirements.txt
+source venv/bin/activate
 ```
-The requirements.txt file includes the following packages:
-pytesseract for OCR
-Pillow for image processing
-pyautogui for screen capture (if needed)
-flask and flask-cors for the API
-translate for translation services
-nltk for natural language processing
-## Setup Instructions
-Configure Tesseract Path (if necessary): Ensure that Tesseract is correctly installed and its executable path is added to your system’s environment variables.
 Start the Flask Server:
 bash
 Copy code:
@@ -43,6 +33,16 @@ python app.py
 By default, the Flask server will start on localhost:5000. You can change the port in the app.py file if needed.
 API Usage
 The app is built as an API with Flask, and the main endpoints include options to upload text, images, or specify language preferences for summarization.
+
+## Deactivate flask server
+
+To deactivate Flask server, simply run the command:
+```
+deactivate
+```
+
+Now You can close terminal.
+
 
 ## Sample API Endpoints
 

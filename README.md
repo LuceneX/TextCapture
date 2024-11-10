@@ -36,7 +36,7 @@ The app is built as an API with Flask, and the main endpoints include options to
 
 ## Deactivate flask server
 
-To deactivate Flask server, simply run the command:
+To deactivate Flask server, Simply press **CTRL+C** and run the command to deactivate virtual enviroment:
 ```
 deactivate
 ```

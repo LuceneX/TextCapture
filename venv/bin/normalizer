@@ -1,4 +1,4 @@
-#!/Users/ernestssmalikis/Documents/GitHub/TextCapture/venv/bin/python
+#!/Users/ernestssmalikis/Documents/GitHub/TextCapture/venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

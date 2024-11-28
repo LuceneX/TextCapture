@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="extension/icon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summarization Tool</title>
+  <style>
+    /* Minimalistic styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #444;
+    }
+    textarea {
+      width: 90%;
+      max-width: 600px;
+      height: 150px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 600px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      word-wrap: break-word;
+    }
+    .hidden {
+      display: none;
+    }
+    .loader {
+      border: 4px solid #f4f4f9;
+      border-top: 4px solid #007BFF;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Text Summarization Tool</h1>
+  <textarea id="inputText" placeholder="Enter text to summarize..."></textarea>
+  <button id="summarizeBtn">Summarize</button>
+  <div class="loader hidden" id="loader"></div>
+  <div class="result hidden" id="result"></div>
+
+  <script>
+    // Event listener for button click
+    document.getElementById('summarizeBtn').addEventListener('click', async () => {
+      const inputText = document.getElementById('inputText').value.trim();
+      const resultDiv = document.getElementById('result');
+      const loader = document.getElementById('loader');
+
+      // Hide previous results and show the loader
+      resultDiv.classList.add('hidden');
+      loader.classList.remove('hidden');
+
+      if (!inputText) {
+        resultDiv.textContent = "Please enter some text to summarize.";
+        resultDiv.classList.remove('hidden');
+        loader.classList.add('hidden');
+        return;
+      }
+
+      try {
+        // Send POST request to the API
+        const response = await fetch('/summarize', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: inputText })
+        });
+
+        const data = await response.json();
+
+        // Display the result
+        if (response.ok) {
+          resultDiv.textContent = data.summary;
+        } else {
+          resultDiv.textContent = `Error: ${data.error}`;
+        }
+      } catch (error) {
+        resultDiv.textContent = `Error: Could not connect to the server.`;
+      }
+
+      // Show result and hide loader
+      resultDiv.classList.remove('hidden');
+      loader.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
